@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using Dapper;
+using table.lib;
 
 namespace specflow_table_generator
 {
@@ -44,14 +45,8 @@ namespace specflow_table_generator
                 table = connection.Query(textBox2.Text) as IEnumerable<IDictionary<string, object>>;
             }
 
-            foreach (var row in table)
-            {
-                //then iterate the columns and get a KeyValuePair for each column
-                foreach (var col in row)
-                {
-                    results.AppendText($"{col.Key} {col.Value}{Environment.NewLine}");
-                }
-            }
+            var result = DbTable.Add(table).ToSpecFlowString();
+            results.AppendText(result);
         }
     }
 }
