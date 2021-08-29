@@ -15,28 +15,28 @@ namespace specflow_table_generator
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Generate_Click(object sender, EventArgs e)
         {
             results.Clear();
-            textBox3.Clear();
-            if (string.IsNullOrEmpty(textBox1.Text))
+            logging.Clear();
+            if (string.IsNullOrEmpty(connectionStringText.Text))
             {
-                textBox3.AppendText($"Please fill in the connection string property!{Environment.NewLine}");
+                logging.AppendText($"Please fill in the connection string property!{Environment.NewLine}");
                 return;
             }
-            if (string.IsNullOrEmpty(textBox2.Text))
+            if (string.IsNullOrEmpty(sqlText.Text))
             {
-                textBox3.AppendText($"Please fill in the SQL Query string property!{Environment.NewLine}");
+                logging.AppendText($"Please fill in the SQL Query string property!{Environment.NewLine}");
                 return;
             }
 
             GetSqlData();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Clear_Click(object sender, EventArgs e)
         {
             results.Clear();
-            textBox3.Clear();
+            logging.Clear();
         }
 
         private void GetSqlData()
@@ -45,24 +45,24 @@ namespace specflow_table_generator
             try
             {
                 IEnumerable<IDictionary<string, object>> table;
-                using (var connection = new SqlConnection(textBox1.Text))
+                using (var connection = new SqlConnection(connectionStringText.Text))
                 {
                     connection.Open();
-                    table = connection.Query(textBox2.Text) as IEnumerable<IDictionary<string, object>>;
+                    table = connection.Query(sqlText.Text) as IEnumerable<IDictionary<string, object>>;
                 }
 
                 var result = DbTable.Add(table).ToSpecFlowString();
                 results.AppendText(result);
                 st.Stop();
-                textBox3.AppendText($"Success in {st.ElapsedMilliseconds}{Environment.NewLine}ms");
+                logging.AppendText($"Success in {st.ElapsedMilliseconds}ms{Environment.NewLine}");
             }
             catch (Exception ex)
             {
                 st.Stop();
-                textBox3.AppendText($"Failure in {st.ElapsedMilliseconds}{Environment.NewLine}ms");
-                textBox3.AppendText($"{ex.Message}{Environment.NewLine}");
+                logging.AppendText($"Failure in {st.ElapsedMilliseconds}ms{Environment.NewLine}");
+                logging.AppendText($"{ex.Message}{Environment.NewLine}");
                 if (ex.InnerException != null)
-                    textBox3.AppendText($"{ex.InnerException.Message}{Environment.NewLine}");
+                    logging.AppendText($"{ex.InnerException.Message}{Environment.NewLine}");
             }
         }
     }

@@ -31,26 +31,26 @@ namespace specflow_table_generator
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpecFlowTableGenerator));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.logging = new System.Windows.Forms.TextBox();
+            this.clear = new System.Windows.Forms.Button();
+            this.generate = new System.Windows.Forms.Button();
             this.SqlQuery = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sqlText = new System.Windows.Forms.TextBox();
+            this.connectionStringText = new System.Windows.Forms.TextBox();
             this.ConnectionString = new System.Windows.Forms.Label();
             this.results = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.logging);
+            this.panel1.Controls.Add(this.clear);
+            this.panel1.Controls.Add(this.generate);
             this.panel1.Controls.Add(this.SqlQuery);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.sqlText);
+            this.panel1.Controls.Add(this.connectionStringText);
             this.panel1.Controls.Add(this.ConnectionString);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -58,25 +58,34 @@ namespace specflow_table_generator
             this.panel1.Size = new System.Drawing.Size(1303, 225);
             this.panel1.TabIndex = 0;
             // 
-            // button2
+            // logging
             // 
-            this.button2.Location = new System.Drawing.Point(1040, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.logging.Location = new System.Drawing.Point(928, 43);
+            this.logging.Multiline = true;
+            this.logging.Name = "logging";
+            this.logging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.logging.Size = new System.Drawing.Size(363, 179);
+            this.logging.TabIndex = 7;
             // 
-            // button1
+            // clear
             // 
-            this.button1.Location = new System.Drawing.Point(928, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.clear.Location = new System.Drawing.Point(1040, 14);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(106, 23);
+            this.clear.TabIndex = 6;
+            this.clear.Text = "Clear";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // generate
+            // 
+            this.generate.Location = new System.Drawing.Point(928, 14);
+            this.generate.Name = "generate";
+            this.generate.Size = new System.Drawing.Size(106, 23);
+            this.generate.TabIndex = 5;
+            this.generate.Text = "Generate";
+            this.generate.UseVisualStyleBackColor = true;
+            this.generate.Click += new System.EventHandler(this.Generate_Click);
             // 
             // SqlQuery
             // 
@@ -87,23 +96,23 @@ namespace specflow_table_generator
             this.SqlQuery.TabIndex = 4;
             this.SqlQuery.Text = "SQL Query";
             // 
-            // textBox2
+            // sqlText
             // 
-            this.textBox2.Location = new System.Drawing.Point(118, 43);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(804, 179);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
+            this.sqlText.Location = new System.Drawing.Point(118, 43);
+            this.sqlText.Multiline = true;
+            this.sqlText.Name = "sqlText";
+            this.sqlText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.sqlText.Size = new System.Drawing.Size(804, 179);
+            this.sqlText.TabIndex = 3;
+            this.sqlText.Text = resources.GetString("sqlText.Text");
             // 
-            // textBox1
+            // connectionStringText
             // 
-            this.textBox1.Location = new System.Drawing.Point(118, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(804, 23);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Data Source=localhost;Initial Catalog=DatingApp;Integrated Security=True";
+            this.connectionStringText.Location = new System.Drawing.Point(118, 14);
+            this.connectionStringText.Name = "connectionStringText";
+            this.connectionStringText.Size = new System.Drawing.Size(804, 23);
+            this.connectionStringText.TabIndex = 2;
+            this.connectionStringText.Text = "Data Source=localhost;Initial Catalog=DatingApp;Integrated Security=True";
             // 
             // ConnectionString
             // 
@@ -125,15 +134,6 @@ namespace specflow_table_generator
             this.results.Size = new System.Drawing.Size(1303, 570);
             this.results.TabIndex = 4;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(928, 43);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox3.Size = new System.Drawing.Size(363, 179);
-            this.textBox3.TabIndex = 7;
-            // 
             // SpecFlowTableGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -141,6 +141,7 @@ namespace specflow_table_generator
             this.ClientSize = new System.Drawing.Size(1303, 795);
             this.Controls.Add(this.results);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SpecFlowTableGenerator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SpeckFlow Table Generator";
@@ -155,13 +156,13 @@ namespace specflow_table_generator
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label SqlQuery;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox sqlText;
+        private System.Windows.Forms.TextBox connectionStringText;
         private System.Windows.Forms.Label ConnectionString;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button clear;
+        private System.Windows.Forms.Button generate;
         private System.Windows.Forms.TextBox results;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox logging;
     }
 }
 
