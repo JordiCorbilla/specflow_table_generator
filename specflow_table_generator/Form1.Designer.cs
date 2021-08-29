@@ -38,12 +38,14 @@ namespace specflow_table_generator
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ConnectionString = new System.Windows.Forms.Label();
             this.results = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.SqlQuery);
@@ -123,6 +125,15 @@ namespace specflow_table_generator
             this.results.Size = new System.Drawing.Size(1303, 570);
             this.results.TabIndex = 4;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(928, 43);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox3.Size = new System.Drawing.Size(363, 179);
+            this.textBox3.TabIndex = 7;
+            // 
             // SpecFlowTableGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -150,6 +161,7 @@ namespace specflow_table_generator
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox results;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
