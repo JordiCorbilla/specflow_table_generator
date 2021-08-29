@@ -6,6 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <PackageIcon>iceberg_ice_global_warming_nature_icon_191920.ico</PackageIcon>
     <PackageIconUrl />
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
