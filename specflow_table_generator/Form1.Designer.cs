@@ -126,13 +126,14 @@ namespace specflow_table_generator
             // results
             // 
             this.results.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.results.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.results.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.results.Location = new System.Drawing.Point(0, 225);
             this.results.Multiline = true;
             this.results.Name = "results";
             this.results.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.results.Size = new System.Drawing.Size(1303, 570);
             this.results.TabIndex = 4;
+            this.results.WordWrap = false;
             // 
             // SpecFlowTableGenerator
             // 
