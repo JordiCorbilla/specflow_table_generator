@@ -63,6 +63,7 @@ namespace specflow_table_generator
             this.logging.Location = new System.Drawing.Point(928, 43);
             this.logging.Multiline = true;
             this.logging.Name = "logging";
+            this.logging.ReadOnly = true;
             this.logging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.logging.Size = new System.Drawing.Size(363, 179);
             this.logging.TabIndex = 7;
@@ -105,6 +106,7 @@ namespace specflow_table_generator
             this.sqlText.Size = new System.Drawing.Size(804, 179);
             this.sqlText.TabIndex = 3;
             this.sqlText.Text = resources.GetString("sqlText.Text");
+            this.sqlText.WordWrap = false;
             // 
             // connectionStringText
             // 
@@ -130,6 +132,7 @@ namespace specflow_table_generator
             this.results.Location = new System.Drawing.Point(0, 225);
             this.results.Multiline = true;
             this.results.Name = "results";
+            this.results.ReadOnly = true;
             this.results.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.results.Size = new System.Drawing.Size(1303, 570);
             this.results.TabIndex = 4;
