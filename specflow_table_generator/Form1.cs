@@ -51,7 +51,10 @@ namespace specflow_table_generator
                     table = connection.Query(sqlText.Text) as IEnumerable<IDictionary<string, object>>;
                 }
 
-                var result = DbTable.Add(table).ToSpecFlowString();
+                var result = DbTable.Add(table, new Options
+                {
+                    DateFormat = "yyyy-MM-dd"
+                }).ToSpecFlowString();
                 results.AppendText(result);
                 st.Stop();
                 logging.AppendText($"Success in {st.ElapsedMilliseconds}ms{Environment.NewLine}");
