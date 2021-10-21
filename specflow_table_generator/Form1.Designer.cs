@@ -40,12 +40,16 @@ namespace specflow_table_generator
             this.ConnectionString = new System.Windows.Forms.Label();
             this.results = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.databaseText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.databaseText);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.logging);
             this.panel1.Controls.Add(this.clear);
@@ -114,18 +118,18 @@ namespace specflow_table_generator
             // 
             this.connectionStringText.Location = new System.Drawing.Point(118, 14);
             this.connectionStringText.Name = "connectionStringText";
-            this.connectionStringText.Size = new System.Drawing.Size(804, 23);
+            this.connectionStringText.Size = new System.Drawing.Size(140, 23);
             this.connectionStringText.TabIndex = 2;
-            this.connectionStringText.Text = "Data Source=localhost;Initial Catalog=DatingApp;Integrated Security=True";
+            this.connectionStringText.Text = "localhost";
             // 
             // ConnectionString
             // 
             this.ConnectionString.AutoSize = true;
             this.ConnectionString.Location = new System.Drawing.Point(12, 17);
             this.ConnectionString.Name = "ConnectionString";
-            this.ConnectionString.Size = new System.Drawing.Size(100, 15);
+            this.ConnectionString.Size = new System.Drawing.Size(42, 15);
             this.ConnectionString.TabIndex = 1;
-            this.ConnectionString.Text = "ConnectionString";
+            this.ConnectionString.Text = "Server:";
             // 
             // results
             // 
@@ -149,6 +153,23 @@ namespace specflow_table_generator
             this.button1.Text = "Clear";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // databaseText
+            // 
+            this.databaseText.Location = new System.Drawing.Point(340, 14);
+            this.databaseText.Name = "databaseText";
+            this.databaseText.Size = new System.Drawing.Size(140, 23);
+            this.databaseText.TabIndex = 10;
+            this.databaseText.Text = "datingApp";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(276, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Database:";
             // 
             // SpecFlowTableGenerator
             // 
@@ -180,6 +201,8 @@ namespace specflow_table_generator
         private System.Windows.Forms.TextBox results;
         private System.Windows.Forms.TextBox logging;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox databaseText;
+        private System.Windows.Forms.Label label1;
     }
 }
 

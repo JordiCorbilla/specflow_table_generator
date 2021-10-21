@@ -19,7 +19,7 @@ namespace specflow_table_generator
         {
             results.Clear();
             logging.Clear();
-            if (string.IsNullOrEmpty(connectionStringText.Text))
+            if (string.IsNullOrEmpty(connectionStringText.Text) || string.IsNullOrEmpty(databaseText.Text))
             {
                 logging.AppendText($"Please fill in the connection string property!{Environment.NewLine}");
                 return;
@@ -45,7 +45,7 @@ namespace specflow_table_generator
             try
             {
                 IEnumerable<IDictionary<string, object>> table;
-                using (var connection = new SqlConnection(connectionStringText.Text))
+                using (var connection = new SqlConnection($"Data Source={connectionStringText.Text};Initial Catalog={databaseText.Text};Integrated Security=True"))
                 {
                     connection.Open();
                     table = connection.Query(sqlText.Text) as IEnumerable<IDictionary<string, object>>;
