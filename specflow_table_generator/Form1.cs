@@ -53,7 +53,7 @@ namespace specflow_table_generator
 
                 var result = DbTable.Add(table, new Options
                 {
-                    DateFormat = "yyyy-MM-dd"
+                    DateFormat = "yyyy-MM-dd HH:mm:ss.fff"
                 }).ToSpecFlowString();
                 results.AppendText(result);
                 st.Stop();
@@ -67,6 +67,11 @@ namespace specflow_table_generator
                 if (ex.InnerException != null)
                     logging.AppendText($"{ex.InnerException.Message}{Environment.NewLine}");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            sqlText.Clear();
         }
     }
 }

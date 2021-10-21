@@ -39,12 +39,14 @@ namespace specflow_table_generator
             this.connectionStringText = new System.Windows.Forms.TextBox();
             this.ConnectionString = new System.Windows.Forms.Label();
             this.results = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.logging);
             this.panel1.Controls.Add(this.clear);
             this.panel1.Controls.Add(this.generate);
@@ -138,6 +140,16 @@ namespace specflow_table_generator
             this.results.TabIndex = 4;
             this.results.WordWrap = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 64);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // SpecFlowTableGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -167,6 +179,7 @@ namespace specflow_table_generator
         private System.Windows.Forms.Button generate;
         private System.Windows.Forms.TextBox results;
         private System.Windows.Forms.TextBox logging;
+        private System.Windows.Forms.Button button1;
     }
 }
 
