@@ -6,7 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <PackageIcon>iceberg_ice_global_warming_nature_icon_191920.ico</PackageIcon>
     <PackageIconUrl />
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>speckflow_table_generator.snk</AssemblyOriginatorKeyFile>
     <ApplicationIcon>C:\Users\thund\Downloads\iceberg_ice_global_warming_nature_icon_191920.ico</ApplicationIcon>
