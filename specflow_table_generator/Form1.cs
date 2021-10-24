@@ -54,24 +54,29 @@ namespace specflow_table_generator
                 var result = DbTable.Add(table, new Options
                 {
                     DateFormat = "yyyy-MM-dd HH:mm:ss.fff"
-                }).ToSpecFlowString();
+                }).FilterColumns(new []{"AuditUser", "AuditStartTime", "AuditEndTime"}).ToSpecFlowString();
                 results.AppendText(result);
                 st.Stop();
-                logging.AppendText($"Success in {st.ElapsedMilliseconds}ms{Environment.NewLine}");
+                logging.AppendText($"Success in {st.ElapsedMilliseconds}ms at {DateTime.UtcNow:u} UTC{Environment.NewLine}");
             }
             catch (Exception ex)
             {
                 st.Stop();
-                logging.AppendText($"Failure in {st.ElapsedMilliseconds}ms{Environment.NewLine}");
+                logging.AppendText($"Failure in {st.ElapsedMilliseconds}ms at {DateTime.UtcNow:u} UTC{Environment.NewLine}");
                 logging.AppendText($"{ex.Message}{Environment.NewLine}");
                 if (ex.InnerException != null)
-                    logging.AppendText($"{ex.InnerException.Message}{Environment.NewLine}");
+                    logging.AppendText($"{ex.InnerException.Message} at {DateTime.UtcNow:u} UTC{Environment.NewLine}");
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             sqlText.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Generate_Click(sender, e);
         }
     }
 }
