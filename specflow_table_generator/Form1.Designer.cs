@@ -18,6 +18,12 @@ namespace specflow_table_generator
             {
                 components.Dispose();
             }
+
+            if (disposing)
+            {
+                settingsSaveTimer?.Dispose();
+            }
+
             base.Dispose(disposing);
         }
 

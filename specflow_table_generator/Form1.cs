@@ -12,9 +12,16 @@ namespace specflow_table_generator
 {
     public partial class SpecFlowTableGenerator : Form
     {
+        private readonly Timer settingsSaveTimer;
+        private bool isLoadingSettings;
+
         public SpecFlowTableGenerator()
         {
             InitializeComponent();
+            settingsSaveTimer = new Timer { Interval = 750 };
+            settingsSaveTimer.Tick += SettingsSaveTimer_Tick;
+            LoadUserSettings();
+            TrackSettingsChanges();
         }
 
         private async void Generate_Click(object sender, EventArgs e)
@@ -137,6 +144,75 @@ namespace specflow_table_generator
         private void Log(string message)
         {
             logging.AppendText($"{DateTime.UtcNow:u} UTC - {message}{Environment.NewLine}");
+        }
+
+        private void LoadUserSettings()
+        {
+            isLoadingSettings = true;
+            try
+            {
+                var settings = UserSettings.Load();
+                if (settings == null)
+                {
+                    return;
+                }
+
+                connectionStringText.Text = settings.ServerOrConnectionString ?? connectionStringText.Text;
+                databaseText.Text = settings.Database ?? databaseText.Text;
+                sqlText.Text = settings.SqlQuery ?? sqlText.Text;
+            }
+            finally
+            {
+                isLoadingSettings = false;
+            }
+        }
+
+        private void TrackSettingsChanges()
+        {
+            connectionStringText.TextChanged += (_, _) => ScheduleSettingsSave();
+            databaseText.TextChanged += (_, _) => ScheduleSettingsSave();
+            sqlText.TextChanged += (_, _) => ScheduleSettingsSave();
+        }
+
+        private void ScheduleSettingsSave()
+        {
+            if (isLoadingSettings)
+            {
+                return;
+            }
+
+            settingsSaveTimer.Stop();
+            settingsSaveTimer.Start();
+        }
+
+        private void SettingsSaveTimer_Tick(object sender, EventArgs e)
+        {
+            settingsSaveTimer.Stop();
+            SaveUserSettings();
+        }
+
+        private void SaveUserSettings()
+        {
+            try
+            {
+                new UserSettings
+                {
+                    ServerOrConnectionString = connectionStringText.Text,
+                    Database = databaseText.Text,
+                    SqlQuery = sqlText.Text
+                }.Save();
+            }
+            catch (Exception ex)
+            {
+                Log($"Unable to save settings: {ex.Message}");
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            settingsSaveTimer.Stop();
+            SaveUserSettings();
+            base.OnFormClosing(e);
         }
 
         private void button1_Click(object sender, EventArgs e)
